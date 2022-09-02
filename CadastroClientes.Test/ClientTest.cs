@@ -15,7 +15,7 @@ namespace CadastroClientes.Test
         public void Idade_VinteAnosDepois_RetornaVinte()
         {
             //Arrange
-            Cliente cliente = new Cliente("Jose da Silva", DateTime.Now.AddYears(-20), "jsilva@mail.com");
+            Cliente cliente = new Cliente("Jose da Silva", DateTime.Now.AddYears(-20).AddDays(-1), "jsilva@mail.com");
 
             //Act
             var idade = cliente.Idade();
@@ -25,10 +25,10 @@ namespace CadastroClientes.Test
         }
 
         [Fact]
-        public void Idade_VinteAnosEUmDepois_RetornaVinte()
+        public void Idade_VinteAnosEUmDepois_Retorna19()
         {
             //Arrange
-            Cliente cliente = new Cliente("Jose da Silva", DateTime.Now.AddYears(-20).AddDays(-1), "jsilva@mail.com");
+            Cliente cliente = new Cliente("Jose", DateTime.Now.AddYears(-20).AddDays(1), "jsilva@mail.com");
 
             //Act
             var idade = cliente.Idade();
@@ -36,8 +36,9 @@ namespace CadastroClientes.Test
             //Assert
             Assert.Equal(19, idade);
         }
+
         [Theory]
-        [InlineData("Joao", new DateTime(2000, 06, 15), "Joao@uol.com")]
+        [InlineData("Joao","2000, 06, 15", "Joao@uol.com")]
         public void AtualizaDados_AlteraNomeEmailNascimento_RetornaAlterado(string nome, DateTime nascimento, string email)
         {
             //Arrange
